@@ -2,19 +2,19 @@
 #include"Queue.h"
 #include"Stack.h"
 
-//³õÊ¼»¯¶þ²æÊ÷
+//åˆå§‹åŒ–äºŒå‰æ ‘
 void initBinTree(BinTree *bt,ElemType ref)
 {
 	bt->root=NULL;
 	bt->refValue=ref;
 }
-//1:¶þ²æÊ÷µÄ´´½¨·½Ê½
-//±©Â¶½Ó¿Ú
+//1:äºŒå‰æ ‘çš„åˆ›å»ºæ–¹å¼
+//æš´éœ²æŽ¥å£
 void createBinTree_1(BinTree *bt)
 {
 	createBinTree_1(bt,&(bt->root));
 }
-//Êµ¼Ê´´½¨º¯Êý,´Ë´¦**tÎª¶þ¼¶Ö¸Õë£¬ÒòÎªÒª¶Ô¶þ²æÊ÷µÄ¸ù½Úµãbt->root½øÐÐ²Ù×÷
+//å®žé™…åˆ›å»ºå‡½æ•°,æ­¤å¤„**tä¸ºäºŒçº§æŒ‡é’ˆï¼Œå› ä¸ºè¦å¯¹äºŒå‰æ ‘çš„æ ¹èŠ‚ç‚¹bt->rootè¿›è¡Œæ“ä½œ
 void createBinTree_1(BinTree *bt,BinTreeNode **t)
 {
 	ElemType item;
@@ -26,7 +26,7 @@ void createBinTree_1(BinTree *bt,BinTreeNode **t)
 		(*t)=(BinTreeNode*)malloc(sizeof(BinTreeNode));
 		assert((*t)!=NULL);
 		(*t)->data=item;
-		//µÝ¹é´´½¨¶þ²æÊ÷×óÓÒ×ÓÊ÷
+		//é€’å½’åˆ›å»ºäºŒå‰æ ‘å·¦å³å­æ ‘
 		createBinTree_1(bt,&((*t)->leftChild));
 		createBinTree_1(bt,&((*t)->rightChild));
 	}
@@ -90,7 +90,7 @@ void createBinTree_4(BinTree *bt,BinTreeNode *&t,char *&str)
 }
 
 ////////////////////////////
-//2
+//2 æ ‘çš„é€’å½’éåŽ†
 void preOrder(BinTree *bt)
 {
 	preOrder(bt->root);
@@ -104,7 +104,7 @@ void preOrder(BinTreeNode *t)
 		preOrder(t->rightChild);
 	}
 }
-//ÖÐÐò±éÀú
+//ä¸­åºéåŽ†
 void inOrder(BinTree *bt)
 {
 	inOrder(bt->root);
@@ -118,7 +118,7 @@ void inOrder(BinTreeNode *t)
 		inOrder(t->rightChild);
 	}
 }
-//ºóÐò±éÀú
+//åŽåºéåŽ†
 void postOrder(BinTree *bt)
 {
 	postOrder(bt->root);
@@ -132,34 +132,34 @@ void postOrder(BinTreeNode *t)
 		printf("%c ",t->data);
 	}
 }
-//²ã´Î±éÀú(ÐèÒª½èÖú¶ÓÁÐ)
+//å±‚æ¬¡éåŽ†(éœ€è¦å€ŸåŠ©é˜Ÿåˆ—)
 void levelOrder(BinTree *bt)
 {
 	levelOrder(bt->root);
 }
 void levelOrder(BinTreeNode *t)
 {
-	if(t != NULL)//tÎªÖ¸ÏòÍ·½áµãÖ¸Õë
+	if(t != NULL)//tä¸ºæŒ‡å‘å¤´ç»“ç‚¹æŒ‡é’ˆ
 	{
 		BinTreeNode *v;
 		LinkQueue q;
 		InitQueue(&q);
-		EnQueue(&q,t);//½«Í·½áµãÈë¶Ó
-		while(!QueueIsEmpty(&q))//µ±¶ÓÁÐ²»Îª¿Õ
+		EnQueue(&q,t);//å°†å¤´ç»“ç‚¹å…¥é˜Ÿ
+		while(!QueueIsEmpty(&q))//å½“é˜Ÿåˆ—ä¸ä¸ºç©º
 		{
-			GetHead(&q,&v);//È¡Í·½áµã
-			DeQueue(&q);//³ö¶Ó
+			GetHead(&q,&v);//å–å¤´ç»“ç‚¹
+			DeQueue(&q);//å‡ºé˜Ÿ
 			printf("%c ",v->data);
 			if(v->leftChild != NULL)
-				EnQueue(&q,v->leftChild);//×ó×ÓÊ÷²»¿Õ£¬½øÐÐÈë¶Ó
+				EnQueue(&q,v->leftChild);//å·¦å­æ ‘ä¸ç©ºï¼Œè¿›è¡Œå…¥é˜Ÿ
 			if(v->rightChild != NULL)
-				EnQueue(&q,v->rightChild);//ÓÒ×ÓÊ÷²»¿Õ£¬½øÐÐÈë¶Ó
+				EnQueue(&q,v->rightChild);//å³å­æ ‘ä¸ç©ºï¼Œè¿›è¡Œå…¥é˜Ÿ
 		}
 	}
 }
 
 ////////////////////////////////////
-//3
+//3 æ ‘çš„æ–¹æ³•å®žçŽ°
 int size(BinTree *bt)
 {
 	return size(bt->root);
@@ -197,7 +197,7 @@ BinTreeNode* search(BinTreeNode *t,ElemType key)
 	if(t->data == key)
 		return t;
 
-	BinTreeNode *p=search(t->leftChild,key);//´Ó×ó×ÓÊ÷ÖÐÑ°ÕÒ
+	BinTreeNode *p=search(t->leftChild,key);//ä»Žå·¦å­æ ‘ä¸­å¯»æ‰¾
 	if(p != NULL)
 		return p;
 	return search(t->rightChild,key);
@@ -266,7 +266,7 @@ void binTreeClear(BinTreeNode *&t)
 	}
 }
 ////////////////////////////////////
-//4·ÇµÝ¹é±éÀú
+//4 éžé€’å½’éåŽ†(éœ€è¦å€ŸåŠ©æ ˆ)
 void preOrder_1(BinTree *bt)
 {
 	preOrder_1(bt->root);
@@ -325,7 +325,7 @@ void inOrder_1(BinTreeNode *t)
 	}
 }
 /////////////////////////////////
-//5
+//5 æ ‘çš„æ¢å¤ä¸Žå®žçŽ°
 void createBinTree_5(BinTree *bt,char *VLR,char *LVR,int n)
 {
 	createBinTree_5(bt->root,VLR,LVR,n);
