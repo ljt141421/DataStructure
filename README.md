@@ -1,3 +1,4 @@
-# DataStructure
+# 数据结构各章节代码实现
 
-DS code implementation,including the common list,binary tree,find and so on.
+主要参考书籍：《数据结构》严蔚敏版
+
